@@ -1,0 +1,159 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_011899C0 .scope module, "ripplecarrytb" "ripplecarrytb" 2 1;
+ .timescale 0 0;
+v011C0968_0 .var "A", 3 0;
+v011C0498_0 .var "B", 3 0;
+v011C0230_0 .net "CARRY", 0 0, L_011ECD38; 1 drivers
+v011C0338_0 .var "Cin", 0 0;
+RS_011C42C4 .resolv tri, L_011C0548, L_011BFF70, L_011C03E8, L_011C0288;
+v011C0650_0 .net8 "SUM", 3 0, RS_011C42C4; 4 drivers
+E_011B51B0 .event edge, v011C09C0_0, v011C0440_0, v011C05F8_0;
+S_01189F10 .scope module, "uut" "rippleadder" 2 9, 3 1, S_011899C0;
+ .timescale 0 0;
+v011C05F8_0 .net "A", 3 0, v011C0968_0; 1 drivers
+v011C0440_0 .net "B", 3 0, v011C0498_0; 1 drivers
+v011C0390_0 .net "C0", 0 0, L_011C11A0; 1 drivers
+v011C00D0_0 .net "C1", 0 0, L_011ECFD8; 1 drivers
+v011C04F0_0 .net "C2", 0 0, L_011ECD00; 1 drivers
+v011C0910_0 .alias "CARRY", 0 0, v011C0230_0;
+v011C05A0_0 .net "C_in", 0 0, v011C0338_0; 1 drivers
+v011C0808_0 .alias "SUM", 3 0, v011C0650_0;
+L_011C0548 .part/pv L_011C11D8, 0, 1, 4;
+L_011C01D8 .part v011C0968_0, 0, 1;
+L_011C0A18 .part v011C0498_0, 0, 1;
+L_011BFF70 .part/pv L_011C1248, 1, 1, 4;
+L_011BFFC8 .part v011C0968_0, 1, 1;
+L_011C0020 .part v011C0498_0, 1, 1;
+L_011C03E8 .part/pv L_011ED128, 2, 1, 4;
+L_011C0128 .part v011C0968_0, 2, 1;
+L_011C06A8 .part v011C0498_0, 2, 1;
+L_011C0288 .part/pv L_011ED320, 3, 1, 4;
+L_011C0700 .part v011C0968_0, 3, 1;
+L_011C0758 .part v011C0498_0, 3, 1;
+S_01189CF0 .scope module, "FA0" "FULLADDER" 3 11, 4 1, S_01189F10;
+ .timescale 0 0;
+L_011C11D8 .functor XOR 1, L_011C01D8, L_011C0A18, v011C0338_0, C4<0>;
+L_011C0FA8 .functor AND 1, L_011C01D8, L_011C0A18, C4<1>, C4<1>;
+L_011C1210 .functor AND 1, L_011C0A18, v011C0338_0, C4<1>, C4<1>;
+L_011C12B8 .functor AND 1, L_011C01D8, v011C0338_0, C4<1>, C4<1>;
+L_011C11A0 .functor OR 1, L_011C0FA8, L_011C1210, L_011C12B8, C4<0>;
+v011C0C28_0 .net "A", 0 0, L_011C01D8; 1 drivers
+v011C0C80_0 .net "B", 0 0, L_011C0A18; 1 drivers
+v011C0CD8_0 .net "C0", 0 0, L_011C0FA8; 1 drivers
+v011C0EE8_0 .net "C1", 0 0, L_011C1210; 1 drivers
+v011C02E0_0 .net "C2", 0 0, L_011C12B8; 1 drivers
+v011C0078_0 .alias "CARRY", 0 0, v011C0390_0;
+v011C09C0_0 .alias "C_in", 0 0, v011C05A0_0;
+v011C0180_0 .net "SUM", 0 0, L_011C11D8; 1 drivers
+S_0118A350 .scope module, "FA1" "FULLADDER" 3 12, 4 1, S_01189F10;
+ .timescale 0 0;
+L_011C1248 .functor XOR 1, L_011BFFC8, L_011C0020, L_011C11A0, C4<0>;
+L_011C1130 .functor AND 1, L_011BFFC8, L_011C0020, C4<1>, C4<1>;
+L_011ED198 .functor AND 1, L_011C0020, L_011C11A0, C4<1>, C4<1>;
+L_011ECF30 .functor AND 1, L_011BFFC8, L_011C11A0, C4<1>, C4<1>;
+L_011ECFD8 .functor OR 1, L_011C1130, L_011ED198, L_011ECF30, C4<0>;
+v011C0AC8_0 .net "A", 0 0, L_011BFFC8; 1 drivers
+v011C0A70_0 .net "B", 0 0, L_011C0020; 1 drivers
+v011C0B20_0 .net "C0", 0 0, L_011C1130; 1 drivers
+v011C0DE0_0 .net "C1", 0 0, L_011ED198; 1 drivers
+v011C0E38_0 .net "C2", 0 0, L_011ECF30; 1 drivers
+v011C0B78_0 .alias "CARRY", 0 0, v011C00D0_0;
+v011C0E90_0 .alias "C_in", 0 0, v011C0390_0;
+v011C0BD0_0 .net "SUM", 0 0, L_011C1248; 1 drivers
+S_01189AD0 .scope module, "FA2" "FULLADDER" 3 13, 4 1, S_01189F10;
+ .timescale 0 0;
+L_011ED128 .functor XOR 1, L_011C0128, L_011C06A8, L_011ECFD8, C4<0>;
+L_011ECEC0 .functor AND 1, L_011C0128, L_011C06A8, C4<1>, C4<1>;
+L_011ED2E8 .functor AND 1, L_011C06A8, L_011ECFD8, C4<1>, C4<1>;
+L_011ECE50 .functor AND 1, L_011C0128, L_011ECFD8, C4<1>, C4<1>;
+L_011ECD00 .functor OR 1, L_011ECEC0, L_011ED2E8, L_011ECE50, C4<0>;
+v011B21E8_0 .net "A", 0 0, L_011C0128; 1 drivers
+v011B2088_0 .net "B", 0 0, L_011C06A8; 1 drivers
+v011B1F28_0 .net "C0", 0 0, L_011ECEC0; 1 drivers
+v011B1F80_0 .net "C1", 0 0, L_011ED2E8; 1 drivers
+v011B2138_0 .net "C2", 0 0, L_011ECE50; 1 drivers
+v011B2190_0 .alias "CARRY", 0 0, v011C04F0_0;
+v011C0D30_0 .alias "C_in", 0 0, v011C00D0_0;
+v011C0D88_0 .net "SUM", 0 0, L_011ED128; 1 drivers
+S_01189828 .scope module, "FA3" "FULLADDER" 3 14, 4 1, S_01189F10;
+ .timescale 0 0;
+L_011ED320 .functor XOR 1, L_011C0700, L_011C0758, L_011ECD00, C4<0>;
+L_011ECF68 .functor AND 1, L_011C0700, L_011C0758, C4<1>, C4<1>;
+L_011ECC90 .functor AND 1, L_011C0758, L_011ECD00, C4<1>, C4<1>;
+L_011ECCC8 .functor AND 1, L_011C0700, L_011ECD00, C4<1>, C4<1>;
+L_011ECD38 .functor OR 1, L_011ECF68, L_011ECC90, L_011ECCC8, C4<0>;
+v011B1DC8_0 .net "A", 0 0, L_011C0700; 1 drivers
+v011B1C10_0 .net "B", 0 0, L_011C0758; 1 drivers
+v011B1B60_0 .net "C0", 0 0, L_011ECF68; 1 drivers
+v011B1E20_0 .net "C1", 0 0, L_011ECC90; 1 drivers
+v011B2030_0 .net "C2", 0 0, L_011ECCC8; 1 drivers
+v011B1E78_0 .alias "CARRY", 0 0, v011C0230_0;
+v011B20E0_0 .alias "C_in", 0 0, v011C04F0_0;
+v011B1ED0_0 .net "SUM", 0 0, L_011ED320; 1 drivers
+    .scope S_011899C0;
+T_0 ;
+    %wait E_011B51B0;
+    %delay 1, 0;
+    %vpi_call 2 19 "$display", "A=%b, B=%b, C_in=%b || SUM=%b, CARRY=%B", v011C0968_0, v011C0498_0, v011C0338_0, v011C0650_0, v011C0230_0;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_011899C0;
+T_1 ;
+    %vpi_call 2 24 "$dumpfile", "ripplecarryadder.vcd";
+    %vpi_call 2 25 "$dumpvars", 1'sb0, S_011899C0;
+    %set/v v011C0968_0, 0, 4;
+    %set/v v011C0498_0, 0, 4;
+    %set/v v011C0338_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 1, 4;
+    %set/v v011C0968_0, 8, 4;
+    %movi 8, 1, 4;
+    %set/v v011C0498_0, 8, 4;
+    %set/v v011C0338_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 3, 4;
+    %set/v v011C0968_0, 8, 4;
+    %movi 8, 1, 4;
+    %set/v v011C0498_0, 8, 4;
+    %set/v v011C0338_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 7, 4;
+    %set/v v011C0968_0, 8, 4;
+    %movi 8, 1, 4;
+    %set/v v011C0498_0, 8, 4;
+    %set/v v011C0338_0, 0, 1;
+    %delay 10, 0;
+    %movi 8, 10, 4;
+    %set/v v011C0968_0, 8, 4;
+    %movi 8, 5, 4;
+    %set/v v011C0498_0, 8, 4;
+    %set/v v011C0338_0, 0, 1;
+    %delay 10, 0;
+    %set/v v011C0968_0, 1, 4;
+    %movi 8, 1, 4;
+    %set/v v011C0498_0, 8, 4;
+    %set/v v011C0338_0, 0, 1;
+    %delay 10, 0;
+    %set/v v011C0968_0, 1, 4;
+    %set/v v011C0498_0, 1, 4;
+    %set/v v011C0338_0, 0, 1;
+    %delay 10, 0;
+    %set/v v011C0968_0, 1, 4;
+    %set/v v011C0498_0, 1, 4;
+    %set/v v011C0338_0, 1, 1;
+    %delay 10, 0;
+    %vpi_call 2 37 "$finish";
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "testbench.v";
+    "code.v";
+    "fulladder.v";

@@ -1,0 +1,41 @@
+$date
+	Sun Jun 28 15:43:27 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module priorityencodertb $end
+$var wire 3 ! Y [2:0] $end
+$var reg 8 " X [7:0] $end
+$scope module uut $end
+$var wire 8 # inp [7:0] $end
+$var reg 3 $ out [2:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b111 $
+b10010100 #
+b10010100 "
+b111 !
+$end
+#10
+b101 $
+b101 !
+b101111 "
+b101111 #
+#20
+b0 $
+b0 !
+b0 "
+b0 #
+#30
+b111 $
+b111 !
+b11111111 "
+b11111111 #
+#40

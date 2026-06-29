@@ -1,0 +1,56 @@
+$date
+	Mon Jun 29 18:29:51 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module bcdtodisplaydecodertb $end
+$var wire 7 ! seg [6:0] $end
+$var reg 4 " bcd [3:0] $end
+$scope module uut $end
+$var wire 4 # bcd [3:0] $end
+$var reg 7 $ seg [6:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b1111110 $
+b0 #
+b0 "
+b1111110 !
+$end
+#5
+b110000 $
+b110000 !
+b1 "
+b1 #
+#10
+b1101101 $
+b1101101 !
+b10 "
+b10 #
+#15
+b1111001 $
+b1111001 !
+b11 "
+b11 #
+#20
+b110011 $
+b110011 !
+b100 "
+b100 #
+#25
+b0 $
+b0 !
+b1111 "
+b1111 #
+#30
+b1011011 $
+b1011011 !
+b101 "
+b101 #
+#35

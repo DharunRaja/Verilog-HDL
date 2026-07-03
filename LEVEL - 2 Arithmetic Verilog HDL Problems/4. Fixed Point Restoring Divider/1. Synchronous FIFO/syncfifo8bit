@@ -1,0 +1,215 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01428010 .scope module, "synchronous_fifo_8bit_tb" "synchronous_fifo_8bit_tb" 2 1;
+ .timescale 0 0;
+v00A50D18_0 .var "clk", 0 0;
+v00A51138_0 .var "data_in", 7 0;
+v00A50D70_0 .net "data_out", 7 0, v01422CF8_0; 1 drivers
+v00A510E0_0 .net "empty", 0 0, L_00A50FD8; 1 drivers
+v00A51298_0 .net "full", 0 0, L_00A54480; 1 drivers
+v00A51190_0 .var/i "i", 31 0;
+v00A513A0_0 .var "re_en", 0 0;
+v00A50DC8_0 .var "reset", 0 0;
+v00A50E78_0 .var "wr_en", 0 0;
+S_01428670 .scope module, "uut" "synchronous_fifo_8bit" 2 15, 3 1, S_01428010;
+ .timescale 0 0;
+L_00A54918 .functor XOR 1, L_00A51240, L_00A513F8, C4<0>, C4<0>;
+L_00A54480 .functor AND 1, L_00A512F0, L_00A54918, C4<1>, C4<1>;
+v0142AB68_0 .net *"_s11", 0 0, L_00A513F8; 1 drivers
+v00A44450_0 .net *"_s12", 0 0, L_00A54918; 1 drivers
+v00A52DD8_0 .net *"_s3", 2 0, L_00A50ED0; 1 drivers
+v00A52E30_0 .net *"_s5", 2 0, L_00A50F28; 1 drivers
+v00A52E88_0 .net *"_s6", 0 0, L_00A512F0; 1 drivers
+v01422BF0_0 .net *"_s9", 0 0, L_00A51240; 1 drivers
+v01422C48_0 .net "clk", 0 0, v00A50D18_0; 1 drivers
+v01422CA0_0 .net "data_in", 7 0, v00A51138_0; 1 drivers
+v01422CF8_0 .var "data_out", 7 0;
+v00A423A0_0 .alias "empty", 0 0, v00A510E0_0;
+v00A423F8_0 .alias "full", 0 0, v00A51298_0;
+v00A42450 .array "mem", 7 0, 7 0;
+v00A424A8_0 .net "re_en", 0 0, v00A513A0_0; 1 drivers
+v00A50E20_0 .var "re_ptr", 3 0;
+v00A511E8_0 .net "reset", 0 0, v00A50DC8_0; 1 drivers
+v00A51348_0 .net "wr_en", 0 0, v00A50E78_0; 1 drivers
+v00A51450_0 .var "wr_ptr", 3 0;
+E_00A42008 .event posedge, v01422C48_0;
+L_00A50FD8 .cmp/eq 4, v00A51450_0, v00A50E20_0;
+L_00A50ED0 .part v00A51450_0, 0, 3;
+L_00A50F28 .part v00A50E20_0, 0, 3;
+L_00A512F0 .cmp/eq 3, L_00A50ED0, L_00A50F28;
+L_00A51240 .part v00A51450_0, 3, 1;
+L_00A513F8 .part v00A50E20_0, 3, 1;
+    .scope S_01428670;
+T_0 ;
+    %wait E_00A42008;
+    %load/v 8, v00A511E8_0, 1;
+    %mov 9, 0, 2;
+    %cmpi/u 8, 1, 3;
+    %jmp/0xz  T_0.0, 4;
+    %ix/load 0, 8, 0;
+    %assign/v0 v01422CF8_0, 0, 0;
+    %ix/load 0, 4, 0;
+    %assign/v0 v00A51450_0, 0, 0;
+    %ix/load 0, 4, 0;
+    %assign/v0 v00A50E20_0, 0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/v 8, v00A511E8_0, 1;
+    %mov 9, 0, 1;
+    %cmpi/u 8, 0, 2;
+    %jmp/0xz  T_0.2, 4;
+    %load/v 8, v00A51348_0, 1;
+    %mov 9, 0, 2;
+    %cmpi/u 8, 1, 3;
+    %mov 8, 4, 1;
+    %load/v 9, v00A423F8_0, 1;
+    %inv 9, 1;
+    %and 8, 9, 1;
+    %jmp/0xz  T_0.4, 8;
+    %load/v 8, v01422CA0_0, 8;
+    %load/v 16, v00A51450_0, 3; Only need 3 of 4 bits
+; Save base=16 wid=3 in lookaside.
+    %ix/get 3, 16, 3;
+    %jmp/1 t_0, 4;
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v00A42450, 0, 8;
+t_0 ;
+    %load/v 8, v00A51450_0, 4;
+    %mov 12, 0, 28;
+    %addi 8, 1, 32;
+    %ix/load 0, 4, 0;
+    %assign/v0 v00A51450_0, 0, 8;
+T_0.4 ;
+    %load/v 8, v00A424A8_0, 1;
+    %mov 9, 0, 2;
+    %cmpi/u 8, 1, 3;
+    %mov 8, 4, 1;
+    %load/v 9, v00A423A0_0, 1;
+    %inv 9, 1;
+    %and 8, 9, 1;
+    %jmp/0xz  T_0.6, 8;
+    %load/v 16, v00A50E20_0, 3; Only need 3 of 4 bits
+; Save base=16 wid=3 in lookaside.
+    %ix/get 3, 16, 3;
+    %load/av 8, v00A42450, 8;
+    %ix/load 0, 8, 0;
+    %assign/v0 v01422CF8_0, 0, 8;
+    %load/v 8, v00A50E20_0, 4;
+    %mov 12, 0, 28;
+    %addi 8, 1, 32;
+    %ix/load 0, 4, 0;
+    %assign/v0 v00A50E20_0, 0, 8;
+T_0.6 ;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_01428010;
+T_1 ;
+    %set/v v00A50D18_0, 0, 1;
+    %end;
+    .thread T_1;
+    .scope S_01428010;
+T_2 ;
+    %delay 5, 0;
+    %load/v 8, v00A50D18_0, 1;
+    %inv 8, 1;
+    %set/v v00A50D18_0, 8, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_01428010;
+T_3 ;
+    %wait E_00A42008;
+    %delay 1, 0;
+    %vpi_call 2 20 "$display", "t = %0t , RESET = %b , WRITE_ENABLE = %b , READ_ENABLE = %b , INPUT = %b , OUTPUT = %b , FULL = %b , EMPTY = %b", $time, v00A50DC8_0, v00A50E78_0, v00A513A0_0, v00A51138_0, v00A50D70_0, v00A51298_0, v00A510E0_0;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_01428010;
+T_4 ;
+    %vpi_call 2 26 "$dumpfile", "synchronous_fifo_8bit.vcd";
+    %vpi_call 2 27 "$dumpvars", 1'sb0, S_01428010;
+    %set/v v00A51138_0, 0, 8;
+    %set/v v00A50E78_0, 0, 1;
+    %set/v v00A513A0_0, 0, 1;
+    %set/v v00A50DC8_0, 1, 1;
+    %delay 20, 0;
+    %set/v v00A50DC8_0, 0, 1;
+    %delay 20, 0;
+    %set/v v00A50E78_0, 1, 1;
+    %set/v v00A51190_0, 0, 32;
+T_4.0 ;
+    %load/v 8, v00A51190_0, 32;
+   %cmpi/s 8, 8, 32;
+    %jmp/0xz T_4.1, 5;
+    %wait E_00A42008;
+    %load/v 8, v00A51190_0, 32;
+    %set/v v00A51138_0, 8, 8;
+    %delay 1, 0;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v00A51190_0, 32;
+    %set/v v00A51190_0, 8, 32;
+    %jmp T_4.0;
+T_4.1 ;
+    %wait E_00A42008;
+    %delay 1, 0;
+    %set/v v00A50E78_0, 0, 1;
+    %delay 20, 0;
+    %set/v v00A513A0_0, 1, 1;
+    %delay 40, 0;
+    %set/v v00A50E78_0, 1, 1;
+    %movi 8, 170, 8;
+    %set/v v00A51138_0, 8, 8;
+    %delay 20, 0;
+    %set/v v00A50E78_0, 0, 1;
+    %delay 20, 0;
+    %set/v v00A513A0_0, 1, 1;
+    %set/v v00A51190_0, 0, 32;
+T_4.2 ;
+    %load/v 8, v00A51190_0, 32;
+   %cmpi/s 8, 8, 32;
+    %jmp/0xz T_4.3, 5;
+    %wait E_00A42008;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v00A51190_0, 32;
+    %set/v v00A51190_0, 8, 32;
+    %jmp T_4.2;
+T_4.3 ;
+    %delay 10, 0;
+    %set/v v00A513A0_0, 0, 1;
+    %delay 10, 0;
+    %wait E_00A42008;
+    %delay 1, 0;
+    %set/v v00A513A0_0, 1, 1;
+    %wait E_00A42008;
+    %delay 1, 0;
+    %set/v v00A513A0_0, 0, 1;
+    %wait E_00A42008;
+    %delay 1, 0;
+    %set/v v00A50E78_0, 1, 1;
+    %movi 8, 17, 8;
+    %set/v v00A51138_0, 8, 8;
+    %wait E_00A42008;
+    %delay 1, 0;
+    %set/v v00A50E78_0, 0, 1;
+    %set/v v00A513A0_0, 1, 1;
+    %set/v v00A50E78_0, 1, 1;
+    %movi 8, 34, 8;
+    %set/v v00A51138_0, 8, 8;
+    %wait E_00A42008;
+    %delay 1, 0;
+    %set/v v00A50E78_0, 0, 1;
+    %set/v v00A513A0_0, 0, 1;
+    %vpi_call 2 67 "$finish";
+    %end;
+    .thread T_4;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "sync_fifo_8bit_tb.v";
+    "synchronous_fifo_8bit.v";
